@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
-import { Trees, Mail, FileText, Shield, Scale } from "lucide-react";
+import { Mail, FileText, Shield, Scale } from "lucide-react";
+import AnimatedLogo from "@/components/AnimatedLogo";
 
 const Footer = () => {
   return (
@@ -9,9 +10,7 @@ const Footer = () => {
           {/* Brand */}
           <div className="lg:col-span-1">
             <Link to="/" className="flex items-center gap-2 mb-3">
-              <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
-                <Trees className="w-4 h-4 text-primary-foreground" />
-              </div>
+              <AnimatedLogo />
               <span className="font-display text-base font-bold text-foreground">Tongass Listings</span>
             </Link>
             <p className="text-muted-foreground text-xs leading-relaxed mb-4">
@@ -115,14 +114,13 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Bottom Bar */}
         <div className="mt-10 pt-6 border-t border-border">
           <div className="flex flex-col md:flex-row items-center justify-between gap-3">
             <p className="text-muted-foreground text-xs text-center md:text-left">
-              © {new Date().getFullYear()} Tongass Listings LLC. All rights reserved.
+              © {new Date().getFullYear()} Alaska Listings LLC. All rights reserved.
             </p>
             <p className="text-muted-foreground text-xs text-center md:text-right max-w-md">
-              Tongass Listings LLC is a listing service only. We do not participate in, endorse, or guarantee any transactions between users.
+              Tongass Listings is a listing service only. We do not participate in, endorse, or guarantee any transactions between users.
             </p>
           </div>
         </div>
