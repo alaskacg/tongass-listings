@@ -2,109 +2,137 @@ import { motion } from "framer-motion";
 
 const AnimatedLogo = () => {
   return (
-    <div className="relative w-10 h-10 flex items-center justify-center">
-      {/* Outer ring with glow */}
+    <div className="relative w-12 h-10 flex items-center justify-center overflow-hidden">
+      {/* Background glow */}
       <motion.div
-        className="absolute inset-0 rounded-xl bg-gradient-to-br from-forest-emerald via-forest-fern to-forest-gold opacity-80"
+        className="absolute inset-0 rounded-lg bg-gradient-to-t from-forest-deep/40 to-transparent"
         animate={{
-          boxShadow: [
-            "0 0 10px hsl(145 60% 35% / 0.4), 0 0 20px hsl(45 93% 58% / 0.2)",
-            "0 0 20px hsl(145 60% 35% / 0.6), 0 0 40px hsl(45 93% 58% / 0.3)",
-            "0 0 10px hsl(145 60% 35% / 0.4), 0 0 20px hsl(45 93% 58% / 0.2)",
-          ],
+          opacity: [0.4, 0.6, 0.4],
         }}
         transition={{
-          duration: 2,
+          duration: 3,
           repeat: Infinity,
           ease: "easeInOut",
         }}
       />
       
-      {/* Inner dark background */}
-      <div className="absolute inset-[2px] rounded-[10px] bg-background" />
-      
-      {/* Tree/Forest Icon - animated */}
+      {/* Forest trees silhouette */}
       <svg
-        viewBox="0 0 24 24"
-        className="relative w-5 h-5 z-10"
+        viewBox="0 0 48 32"
+        className="relative w-full h-full z-10"
         fill="none"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
       >
-        {/* Main tree - animated growth */}
+        {/* Back tree - left */}
         <motion.path
-          d="M12 22V8"
-          className="text-forest-gold"
-          initial={{ pathLength: 0 }}
-          animate={{ pathLength: 1 }}
-          transition={{ duration: 1, delay: 0.5 }}
+          d="M8 28 L8 18 L4 18 L10 8 L6 8 L12 2 L18 8 L14 8 L20 18 L16 18 L16 28"
+          fill="hsl(var(--forest-moss))"
+          initial={{ opacity: 0.6 }}
+          animate={{ opacity: [0.5, 0.7, 0.5] }}
+          transition={{ duration: 4, repeat: Infinity, delay: 0.5 }}
         />
+        
+        {/* Back tree - right */}
         <motion.path
-          d="M12 8L8 4L12 2L16 4L12 8Z"
-          className="text-primary"
+          d="M32 28 L32 20 L28 20 L34 10 L30 10 L36 4 L42 10 L38 10 L44 20 L40 20 L40 28"
+          fill="hsl(var(--forest-moss))"
+          initial={{ opacity: 0.6 }}
+          animate={{ opacity: [0.5, 0.7, 0.5] }}
+          transition={{ duration: 4, repeat: Infinity, delay: 1 }}
+        />
+        
+        {/* Main center tree */}
+        <motion.path
+          d="M18 28 L18 22 L13 22 L20 12 L15 12 L24 3 L33 12 L28 12 L35 22 L30 22 L30 28"
           fill="hsl(var(--primary))"
-          initial={{ scale: 0, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 0.5, delay: 1.5 }}
+          initial={{ opacity: 0.9 }}
+          animate={{ opacity: [0.85, 1, 0.85] }}
+          transition={{ duration: 3, repeat: Infinity }}
         />
-        {/* Left branch */}
+        
+        {/* Tree detail highlights */}
         <motion.path
-          d="M9 11L12 14"
-          className="text-forest-fern"
-          initial={{ pathLength: 0 }}
-          animate={{ pathLength: 1 }}
-          transition={{ duration: 0.5, delay: 0.8 }}
-        />
-        {/* Right branch */}
-        <motion.path
-          d="M15 11L12 14"
-          className="text-forest-fern"
-          initial={{ pathLength: 0 }}
-          animate={{ pathLength: 1 }}
-          transition={{ duration: 0.5, delay: 1 }}
-        />
-        {/* Lower left branch */}
-        <motion.path
-          d="M8 16L12 19"
-          className="text-forest-moss"
-          initial={{ pathLength: 0 }}
-          animate={{ pathLength: 1 }}
-          transition={{ duration: 0.5, delay: 1.2 }}
-        />
-        {/* Lower right branch */}
-        <motion.path
-          d="M16 16L12 19"
-          className="text-forest-moss"
-          initial={{ pathLength: 0 }}
-          animate={{ pathLength: 1 }}
-          transition={{ duration: 0.5, delay: 1.4 }}
+          d="M24 3 L24 8"
+          stroke="hsl(var(--forest-gold))"
+          strokeWidth="1"
+          strokeLinecap="round"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: [0, 0.8, 0] }}
+          transition={{ duration: 2, repeat: Infinity, delay: 1.5 }}
         />
       </svg>
       
-      {/* Sparkle effects */}
+      {/* Fog layer 1 - bottom */}
       <motion.div
-        className="absolute -top-1 -right-1 w-2 h-2 rounded-full bg-forest-gold"
-        animate={{
-          scale: [0, 1, 0],
-          opacity: [0, 1, 0],
+        className="absolute bottom-0 left-0 right-0 h-4 bg-gradient-to-t from-muted/80 via-muted/40 to-transparent rounded-b-lg"
+        initial={{ opacity: 0.3, x: -5 }}
+        animate={{ 
+          opacity: [0.3, 0.6, 0.3],
+          x: [-5, 5, -5],
         }}
         transition={{
-          duration: 2,
+          duration: 6,
           repeat: Infinity,
-          delay: 0.5,
+          ease: "easeInOut",
+        }}
+      />
+      
+      {/* Fog layer 2 - middle */}
+      <motion.div
+        className="absolute bottom-2 left-0 right-0 h-3 bg-gradient-to-t from-muted/50 via-muted/20 to-transparent"
+        initial={{ opacity: 0.2, x: 3 }}
+        animate={{ 
+          opacity: [0.2, 0.5, 0.2],
+          x: [3, -3, 3],
+        }}
+        transition={{
+          duration: 5,
+          repeat: Infinity,
+          ease: "easeInOut",
+          delay: 1,
+        }}
+      />
+      
+      {/* Fog layer 3 - wispy top */}
+      <motion.div
+        className="absolute bottom-4 left-1 right-1 h-2 bg-gradient-to-r from-transparent via-muted/30 to-transparent rounded-full"
+        initial={{ opacity: 0, x: -8 }}
+        animate={{ 
+          opacity: [0, 0.4, 0],
+          x: [-8, 8, -8],
+        }}
+        transition={{
+          duration: 8,
+          repeat: Infinity,
+          ease: "easeInOut",
+          delay: 2,
+        }}
+      />
+      
+      {/* Fog wisps - floating particles */}
+      <motion.div
+        className="absolute bottom-3 left-2 w-1 h-1 rounded-full bg-muted/40"
+        animate={{ 
+          y: [-2, -6, -2],
+          opacity: [0, 0.6, 0],
+          x: [0, 3, 0],
+        }}
+        transition={{
+          duration: 4,
+          repeat: Infinity,
+          ease: "easeOut",
         }}
       />
       <motion.div
-        className="absolute -bottom-1 -left-1 w-1.5 h-1.5 rounded-full bg-primary"
-        animate={{
-          scale: [0, 1, 0],
-          opacity: [0, 1, 0],
+        className="absolute bottom-2 right-3 w-0.5 h-0.5 rounded-full bg-muted/50"
+        animate={{ 
+          y: [-1, -5, -1],
+          opacity: [0, 0.5, 0],
+          x: [0, -2, 0],
         }}
         transition={{
-          duration: 2,
+          duration: 3.5,
           repeat: Infinity,
+          ease: "easeOut",
           delay: 1.5,
         }}
       />
