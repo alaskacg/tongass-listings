@@ -288,11 +288,11 @@
 .animate-shimmer {
   background: linear-gradient(
     90deg,
-    hsl(var(--foreground)) 0%,
-    hsl(var(--forest-emerald)) 25%,
-    hsl(var(--forest-gold)) 50%,
-    hsl(var(--forest-emerald)) 75%,
-    hsl(var(--foreground)) 100%
+    hsl(45 90% 65%) 0%,
+    hsl(35 95% 60%) 25%,
+    hsl(25 100% 55%) 50%,
+    hsl(35 95% 60%) 75%,
+    hsl(45 90% 65%) 100%
   );
   background-size: 200% auto;
   -webkit-background-clip: text;
