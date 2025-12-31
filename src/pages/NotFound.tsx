@@ -11,11 +11,11 @@ const NotFound = () => {
   }, [location.pathname]);
 
   return (
-    <div className="min-h-screen bg-background aurora-bg flex items-center justify-center px-4">
+    <div className="min-h-screen bg-background forest-bg flex items-center justify-center px-4">
       <div className="text-center max-w-md">
         {/* 404 Display */}
         <div className="mb-8">
-          <h1 className="font-display text-8xl md:text-9xl font-bold text-gradient-aurora">
+          <h1 className="font-display text-8xl md:text-9xl font-bold text-gradient-forest">
             404
           </h1>
         </div>
@@ -25,7 +25,7 @@ const NotFound = () => {
           Page Not Found
         </h2>
         <p className="text-muted-foreground mb-8">
-          Looks like this trail leads to uncharted territory. Let's get you back to familiar ground.
+          Looks like this trail leads deep into the rainforest. Let's get you back to familiar ground.
         </p>
         
         {/* Actions */}

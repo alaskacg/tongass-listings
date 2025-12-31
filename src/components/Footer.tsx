@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { MapPin, Mail, FileText, Shield, Scale } from "lucide-react";
+import { Trees, Mail, FileText, Shield, Scale } from "lucide-react";
 
 const Footer = () => {
   return (
@@ -10,12 +10,12 @@ const Footer = () => {
           <div className="lg:col-span-1">
             <Link to="/" className="flex items-center gap-2 mb-3">
               <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
-                <MapPin className="w-4 h-4 text-primary-foreground" />
+                <Trees className="w-4 h-4 text-primary-foreground" />
               </div>
-              <span className="font-display text-base font-bold text-foreground">Alaska Listings</span>
+              <span className="font-display text-base font-bold text-foreground">Tongass Listings</span>
             </Link>
             <p className="text-muted-foreground text-xs leading-relaxed mb-4">
-              Alaska's premier private listings marketplace connecting buyers and sellers across the Last Frontier.
+              Southeast Alaska's premier private listings marketplace connecting buyers and sellers across the Tongass region.
             </p>
             <div className="flex items-center gap-2">
               <span className="text-xs text-muted-foreground">Listings just</span>
@@ -24,34 +24,34 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Regions */}
+          {/* Communities */}
           <div>
-            <h4 className="font-display text-sm font-semibold text-foreground mb-3">Regions</h4>
+            <h4 className="font-display text-sm font-semibold text-foreground mb-3">Communities</h4>
             <ul className="space-y-1.5">
               <li>
-                <a href="https://anchoragelistings.com" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors text-xs">
-                  Anchorage Area
-                </a>
+                <Link to="/browse?community=Juneau" className="text-muted-foreground hover:text-primary transition-colors text-xs">
+                  Juneau
+                </Link>
               </li>
               <li>
-                <a href="https://kenailistings.com" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors text-xs">
-                  Kenai Peninsula
-                </a>
+                <Link to="/browse?community=Ketchikan" className="text-muted-foreground hover:text-primary transition-colors text-xs">
+                  Ketchikan
+                </Link>
               </li>
               <li>
-                <a href="https://chugachlistings.com" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors text-xs">
-                  Chugach Region
-                </a>
+                <Link to="/browse?community=Sitka" className="text-muted-foreground hover:text-primary transition-colors text-xs">
+                  Sitka
+                </Link>
               </li>
               <li>
-                <a href="https://tongasslistings.com" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors text-xs">
-                  Tongass Area
-                </a>
+                <Link to="/browse?community=Petersburg" className="text-muted-foreground hover:text-primary transition-colors text-xs">
+                  Petersburg
+                </Link>
               </li>
               <li>
-                <a href="/regions" className="text-primary hover:text-primary/80 transition-colors text-xs font-medium">
-                  View All 8 Regions →
-                </a>
+                <Link to="/browse" className="text-primary hover:text-primary/80 transition-colors text-xs font-medium">
+                  View All Communities →
+                </Link>
               </li>
             </ul>
           </div>
@@ -106,7 +106,7 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <a href="mailto:support@aklistings.com" className="text-muted-foreground hover:text-primary transition-colors text-xs flex items-center gap-2">
+                <a href="mailto:support@tongasslistings.com" className="text-muted-foreground hover:text-primary transition-colors text-xs flex items-center gap-2">
                   <Mail className="w-3 h-3" />
                   Contact Us
                 </a>
@@ -119,10 +119,10 @@ const Footer = () => {
         <div className="mt-10 pt-6 border-t border-border">
           <div className="flex flex-col md:flex-row items-center justify-between gap-3">
             <p className="text-muted-foreground text-xs text-center md:text-left">
-              © {new Date().getFullYear()} Alaska Listings LLC. All rights reserved.
+              © {new Date().getFullYear()} Tongass Listings LLC. All rights reserved.
             </p>
             <p className="text-muted-foreground text-xs text-center md:text-right max-w-md">
-              Alaska Listings LLC is a listing service only. We do not participate in, endorse, or guarantee any transactions between users.
+              Tongass Listings LLC is a listing service only. We do not participate in, endorse, or guarantee any transactions between users.
             </p>
           </div>
         </div>
