@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Menu, X, MapPin, User, LogOut, ChevronDown } from "lucide-react";
+import { Menu, X, Trees, User, LogOut, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import ThemeToggle from "@/components/ThemeToggle";
 import { useAuth } from "@/contexts/AuthContext";
@@ -20,15 +20,15 @@ import {
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
 
-const regions = [
-  { name: "Kenai Peninsula", href: "https://kenailistings.com", description: "Soldotna, Homer, Seward" },
-  { name: "Anchorage Area", href: "https://anchoragelistings.com", description: "Anchorage, Eagle River, Mat-Su" },
-  { name: "Tongass Area", href: "https://tongasslistings.com", description: "Juneau, Ketchikan, Sitka" },
-  { name: "Alcan Corridor", href: "https://alcanlistings.com", description: "Fairbanks, Tok, Delta Junction" },
-  { name: "Bristol Bay Area", href: "https://bristolbaylistings.com", description: "Bristol Bay fishing communities" },
-  { name: "Bethel Area", href: "https://bethellistings.com", description: "Bethel, Y-K Delta region" },
-  { name: "Prudhoe Bay Area", href: "https://prudhoebaylistings.com", description: "North Slope, Arctic coast" },
-  { name: "Chugach Region", href: "https://chugachlistings.com", description: "Valdez, Cordova, PWS" },
+const communities = [
+  { name: "Juneau", href: "#", description: "Capital city" },
+  { name: "Ketchikan", href: "#", description: "First city" },
+  { name: "Sitka", href: "#", description: "Historic Russian Alaska" },
+  { name: "Petersburg", href: "#", description: "Little Norway" },
+  { name: "Wrangell", href: "#", description: "Gateway to the Stikine" },
+  { name: "Haines", href: "#", description: "Valley of the Eagles" },
+  { name: "Skagway", href: "#", description: "Gateway to the Klondike" },
+  { name: "Yakutat", href: "#", description: "Surf capital of Alaska" },
 ];
 
 const categories = [
@@ -54,9 +54,9 @@ const Header = () => {
             {/* Logo */}
             <Link to="/" className="flex items-center gap-2">
               <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
-                <MapPin className="w-4 h-4 text-primary-foreground" />
+                <Trees className="w-4 h-4 text-primary-foreground" />
               </div>
-              <span className="font-display text-base font-bold text-foreground">Alaska Listings</span>
+              <span className="font-display text-base font-bold text-foreground">Tongass Listings</span>
             </Link>
 
             {/* Desktop Navigation */}
@@ -64,34 +64,24 @@ const Header = () => {
               <NavigationMenu>
                 <NavigationMenuList>
                   <NavigationMenuItem>
-                    <NavigationMenuTrigger className="text-sm bg-transparent">Regions</NavigationMenuTrigger>
+                    <NavigationMenuTrigger className="text-sm bg-transparent">Communities</NavigationMenuTrigger>
                     <NavigationMenuContent>
                       <ul className="grid w-[400px] gap-2 p-4 md:w-[500px] md:grid-cols-2">
-                        {regions.map((region) => (
-                          <li key={region.name}>
+                        {communities.map((community) => (
+                          <li key={community.name}>
                             <NavigationMenuLink asChild>
-                              <a
-                                href={region.href}
-                                target="_blank"
-                                rel="noopener noreferrer"
+                              <Link
+                                to={`/browse?community=${community.name}`}
                                 className="block select-none rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
                               >
-                                <div className="text-sm font-medium leading-none">{region.name}</div>
+                                <div className="text-sm font-medium leading-none">{community.name}</div>
                                 <p className="line-clamp-2 text-xs leading-snug text-muted-foreground mt-1">
-                                  {region.description}
+                                  {community.description}
                                 </p>
-                              </a>
+                              </Link>
                             </NavigationMenuLink>
                           </li>
                         ))}
-                        <li className="col-span-2">
-                          <Link
-                            to="/regions"
-                            className="block select-none rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground text-center text-sm text-primary"
-                          >
-                            View All Regions →
-                          </Link>
-                        </li>
                       </ul>
                     </NavigationMenuContent>
                   </NavigationMenuItem>
@@ -198,31 +188,23 @@ const Header = () => {
       {mobileMenuOpen && (
         <div className="lg:hidden bg-card border-t border-border animate-slide-up max-h-[80vh] overflow-y-auto">
           <nav className="container mx-auto px-4 py-4 flex flex-col gap-2">
-            {/* Regions Accordion */}
+            {/* Communities Accordion */}
             <details className="group">
               <summary className="flex items-center justify-between py-2 text-sm text-muted-foreground hover:text-foreground cursor-pointer">
-                Regions
+                Communities
                 <ChevronDown className="w-4 h-4 group-open:rotate-180 transition-transform" />
               </summary>
               <div className="pl-4 py-2 space-y-2">
-                {regions.map((region) => (
-                  <a
-                    key={region.name}
-                    href={region.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                {communities.map((community) => (
+                  <Link
+                    key={community.name}
+                    to={`/browse?community=${community.name}`}
                     className="block text-sm text-muted-foreground hover:text-primary py-1"
+                    onClick={() => setMobileMenuOpen(false)}
                   >
-                    {region.name}
-                  </a>
+                    {community.name}
+                  </Link>
                 ))}
-                <Link
-                  to="/regions"
-                  className="block text-sm text-primary py-1"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  View All →
-                </Link>
               </div>
             </details>
 

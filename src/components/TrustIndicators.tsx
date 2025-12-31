@@ -1,4 +1,4 @@
-import { Shield, Users, MapPin, CheckCircle } from "lucide-react";
+import { Shield, Users, Trees, CheckCircle } from "lucide-react";
 
 const TrustIndicators = () => {
   const indicators = [
@@ -10,12 +10,12 @@ const TrustIndicators = () => {
     {
       icon: Users,
       title: "Community Driven",
-      description: "Built by Alaskans, for Alaskans",
+      description: "Built by Southeast Alaskans, for Southeast Alaskans",
     },
     {
-      icon: MapPin,
-      title: "Local Focus",
-      description: "Regional expertise across all of Alaska",
+      icon: Trees,
+      title: "Tongass Focus",
+      description: "Serving Juneau, Ketchikan, Sitka & beyond",
     },
     {
       icon: CheckCircle,

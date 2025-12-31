@@ -5,126 +5,126 @@
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
 
 @layer base {
-  /* Dark Mode (Default - Aurora Borealis Theme) */
+  /* Dark Mode (Default - Tongass Rainforest Theme) */
   :root {
-    --background: 222 47% 6%;
-    --foreground: 210 40% 98%;
+    --background: 150 30% 6%;
+    --foreground: 150 20% 96%;
 
-    --card: 222 47% 8%;
-    --card-foreground: 210 40% 98%;
+    --card: 150 30% 8%;
+    --card-foreground: 150 20% 96%;
 
-    --popover: 222 47% 8%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 150 30% 8%;
+    --popover-foreground: 150 20% 96%;
 
-    --primary: 173 80% 40%;
-    --primary-foreground: 222 47% 6%;
+    --primary: 145 60% 35%;
+    --primary-foreground: 150 30% 6%;
 
-    --secondary: 222 30% 15%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 150 25% 14%;
+    --secondary-foreground: 150 20% 96%;
 
-    --muted: 222 30% 12%;
-    --muted-foreground: 215 20% 65%;
+    --muted: 150 25% 12%;
+    --muted-foreground: 150 15% 60%;
 
     --accent: 45 93% 58%;
-    --accent-foreground: 222 47% 6%;
+    --accent-foreground: 150 30% 6%;
 
     --destructive: 0 84% 60%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 150 20% 96%;
 
-    --border: 222 30% 18%;
-    --input: 222 30% 18%;
-    --ring: 173 80% 40%;
+    --border: 150 25% 18%;
+    --input: 150 25% 18%;
+    --ring: 145 60% 35%;
 
     --radius: 0.75rem;
 
-    /* Custom Alaska theme colors - Dark (No purple) */
-    --aurora-teal: 173 80% 40%;
-    --aurora-cyan: 185 75% 45%;
-    --aurora-green: 160 70% 35%;
-    --aurora-gold: 45 93% 58%;
-    --aurora-deep: 200 60% 30%;
-    --midnight: 222 47% 6%;
-    --glacier: 200 30% 85%;
-    --snow: 210 40% 98%;
+    /* Custom Tongass theme colors - Dark (Forest Greens) */
+    --forest-emerald: 145 60% 35%;
+    --forest-moss: 130 45% 30%;
+    --forest-fern: 140 50% 40%;
+    --forest-gold: 45 93% 58%;
+    --forest-mist: 170 35% 25%;
+    --midnight: 150 30% 6%;
+    --bark: 30 25% 20%;
+    --snow: 150 20% 96%;
 
-    /* Gradients (No purple) */
-    --gradient-aurora: linear-gradient(135deg, hsl(var(--aurora-teal)) 0%, hsl(var(--aurora-cyan)) 35%, hsl(var(--aurora-green)) 65%, hsl(var(--aurora-deep)) 100%);
-    --gradient-card: linear-gradient(145deg, hsl(222 47% 10%) 0%, hsl(222 47% 6%) 100%);
+    /* Gradients (Forest Theme) */
+    --gradient-forest: linear-gradient(135deg, hsl(var(--forest-emerald)) 0%, hsl(var(--forest-moss)) 35%, hsl(var(--forest-fern)) 65%, hsl(var(--forest-mist)) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(150 30% 10%) 0%, hsl(150 30% 6%) 100%);
     --gradient-gold: linear-gradient(135deg, hsl(45 93% 58%) 0%, hsl(35 90% 50%) 100%);
 
     /* Shadows */
-    --shadow-glow: 0 0 60px hsl(var(--aurora-teal) / 0.3);
+    --shadow-glow: 0 0 60px hsl(var(--forest-emerald) / 0.3);
     --shadow-card: 0 10px 40px hsl(0 0% 0% / 0.4);
     --shadow-elevated: 0 20px 60px hsl(0 0% 0% / 0.5);
 
-    --sidebar-background: 222 47% 8%;
-    --sidebar-foreground: 210 40% 98%;
-    --sidebar-primary: 173 80% 40%;
-    --sidebar-primary-foreground: 222 47% 6%;
-    --sidebar-accent: 222 30% 15%;
-    --sidebar-accent-foreground: 210 40% 98%;
-    --sidebar-border: 222 30% 18%;
-    --sidebar-ring: 173 80% 40%;
+    --sidebar-background: 150 30% 8%;
+    --sidebar-foreground: 150 20% 96%;
+    --sidebar-primary: 145 60% 35%;
+    --sidebar-primary-foreground: 150 30% 6%;
+    --sidebar-accent: 150 25% 14%;
+    --sidebar-accent-foreground: 150 20% 96%;
+    --sidebar-border: 150 25% 18%;
+    --sidebar-ring: 145 60% 35%;
   }
 
-  /* Light Mode - Clean Alaska Daylight Theme */
+  /* Light Mode - Clean Tongass Daylight Theme */
   .light {
-    --background: 210 40% 98%;
-    --foreground: 222 47% 11%;
+    --background: 150 25% 97%;
+    --foreground: 150 35% 11%;
 
     --card: 0 0% 100%;
-    --card-foreground: 222 47% 11%;
+    --card-foreground: 150 35% 11%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222 47% 11%;
+    --popover-foreground: 150 35% 11%;
 
-    --primary: 173 70% 35%;
+    --primary: 145 55% 32%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 200 20% 94%;
-    --secondary-foreground: 222 47% 11%;
+    --secondary: 145 18% 92%;
+    --secondary-foreground: 150 35% 11%;
 
-    --muted: 200 20% 96%;
-    --muted-foreground: 222 20% 45%;
+    --muted: 145 18% 94%;
+    --muted-foreground: 150 20% 40%;
 
     --accent: 45 93% 50%;
-    --accent-foreground: 222 47% 11%;
+    --accent-foreground: 150 35% 11%;
 
     --destructive: 0 84% 50%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 200 20% 88%;
-    --input: 200 20% 88%;
-    --ring: 173 70% 35%;
+    --border: 145 18% 85%;
+    --input: 145 18% 85%;
+    --ring: 145 55% 32%;
 
-    /* Custom Alaska theme colors - Light (No purple) */
-    --aurora-teal: 173 70% 35%;
-    --aurora-cyan: 185 65% 40%;
-    --aurora-green: 160 60% 30%;
-    --aurora-gold: 45 93% 50%;
-    --aurora-deep: 200 50% 35%;
-    --midnight: 222 47% 11%;
-    --glacier: 200 30% 50%;
-    --snow: 210 40% 98%;
+    /* Custom Tongass theme colors - Light (Forest Greens) */
+    --forest-emerald: 145 55% 32%;
+    --forest-moss: 130 45% 28%;
+    --forest-fern: 140 45% 38%;
+    --forest-gold: 45 93% 50%;
+    --forest-mist: 170 30% 30%;
+    --midnight: 150 35% 11%;
+    --bark: 30 20% 35%;
+    --snow: 150 25% 97%;
 
-    /* Gradients - Light (No purple) */
-    --gradient-aurora: linear-gradient(135deg, hsl(var(--aurora-teal)) 0%, hsl(var(--aurora-cyan)) 35%, hsl(var(--aurora-green)) 65%, hsl(var(--aurora-deep)) 100%);
-    --gradient-card: linear-gradient(145deg, hsl(0 0% 100%) 0%, hsl(200 20% 98%) 100%);
+    /* Gradients - Light (Forest Theme) */
+    --gradient-forest: linear-gradient(135deg, hsl(var(--forest-emerald)) 0%, hsl(var(--forest-moss)) 35%, hsl(var(--forest-fern)) 65%, hsl(var(--forest-mist)) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 100%) 0%, hsl(145 18% 98%) 100%);
     --gradient-gold: linear-gradient(135deg, hsl(45 93% 50%) 0%, hsl(35 90% 45%) 100%);
 
     /* Shadows - Light */
-    --shadow-glow: 0 0 60px hsl(var(--aurora-teal) / 0.2);
-    --shadow-card: 0 10px 40px hsl(222 47% 11% / 0.08);
-    --shadow-elevated: 0 20px 60px hsl(222 47% 11% / 0.12);
+    --shadow-glow: 0 0 60px hsl(var(--forest-emerald) / 0.2);
+    --shadow-card: 0 10px 40px hsl(150 35% 11% / 0.08);
+    --shadow-elevated: 0 20px 60px hsl(150 35% 11% / 0.12);
 
     --sidebar-background: 0 0% 100%;
-    --sidebar-foreground: 222 47% 11%;
-    --sidebar-primary: 173 70% 35%;
+    --sidebar-foreground: 150 35% 11%;
+    --sidebar-primary: 145 55% 32%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 200 20% 94%;
-    --sidebar-accent-foreground: 222 47% 11%;
-    --sidebar-border: 200 20% 88%;
-    --sidebar-ring: 173 70% 35%;
+    --sidebar-accent: 145 18% 92%;
+    --sidebar-accent-foreground: 150 35% 11%;
+    --sidebar-border: 145 18% 85%;
+    --sidebar-ring: 145 55% 32%;
   }
 }
 
@@ -145,8 +145,8 @@
 }
 
 @layer utilities {
-  .text-gradient-aurora {
-    background: var(--gradient-aurora);
+  .text-gradient-forest {
+    background: var(--gradient-forest);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -177,27 +177,27 @@
     border: 1px solid hsl(var(--border));
   }
 
-  .glow-teal {
-    box-shadow: 0 0 40px hsl(var(--aurora-teal) / 0.4);
+  .glow-emerald {
+    box-shadow: 0 0 40px hsl(var(--forest-emerald) / 0.4);
   }
 
   .glow-gold {
-    box-shadow: 0 0 40px hsl(var(--aurora-gold) / 0.4);
+    box-shadow: 0 0 40px hsl(var(--forest-gold) / 0.4);
   }
 
-  .aurora-bg {
+  .forest-bg {
     background: 
-      radial-gradient(ellipse 80% 50% at 20% 40%, hsl(var(--aurora-teal) / 0.15) 0%, transparent 50%),
-      radial-gradient(ellipse 60% 40% at 80% 60%, hsl(var(--aurora-deep) / 0.1) 0%, transparent 50%),
-      radial-gradient(ellipse 70% 50% at 50% 20%, hsl(var(--aurora-green) / 0.1) 0%, transparent 50%),
+      radial-gradient(ellipse 80% 50% at 20% 40%, hsl(var(--forest-emerald) / 0.15) 0%, transparent 50%),
+      radial-gradient(ellipse 60% 40% at 80% 60%, hsl(var(--forest-mist) / 0.1) 0%, transparent 50%),
+      radial-gradient(ellipse 70% 50% at 50% 20%, hsl(var(--forest-moss) / 0.1) 0%, transparent 50%),
       hsl(var(--background));
   }
 
-  .light .aurora-bg {
+  .light .forest-bg {
     background: 
-      radial-gradient(ellipse 80% 50% at 20% 40%, hsl(var(--aurora-teal) / 0.08) 0%, transparent 50%),
-      radial-gradient(ellipse 60% 40% at 80% 60%, hsl(var(--aurora-deep) / 0.05) 0%, transparent 50%),
-      radial-gradient(ellipse 70% 50% at 50% 20%, hsl(var(--aurora-green) / 0.05) 0%, transparent 50%),
+      radial-gradient(ellipse 80% 50% at 20% 40%, hsl(var(--forest-emerald) / 0.08) 0%, transparent 50%),
+      radial-gradient(ellipse 60% 40% at 80% 60%, hsl(var(--forest-mist) / 0.05) 0%, transparent 50%),
+      radial-gradient(ellipse 70% 50% at 50% 20%, hsl(var(--forest-moss) / 0.05) 0%, transparent 50%),
       hsl(var(--background));
   }
 }
@@ -209,16 +209,16 @@
 
   .card-hover:hover {
     @apply -translate-y-2;
-    box-shadow: var(--shadow-elevated), 0 0 60px hsl(var(--aurora-teal) / 0.2);
+    box-shadow: var(--shadow-elevated), 0 0 60px hsl(var(--forest-emerald) / 0.2);
   }
 
-  .btn-aurora {
+  .btn-forest {
     @apply relative overflow-hidden transition-all duration-300;
-    background: var(--gradient-aurora);
+    background: var(--gradient-forest);
     background-size: 200% 200%;
   }
 
-  .btn-aurora:hover {
+  .btn-forest:hover {
     background-size: 300% 300%;
     box-shadow: var(--shadow-glow);
   }
@@ -270,10 +270,10 @@
 
 @keyframes glow-pulse {
   0%, 100% {
-    text-shadow: 0 0 20px hsl(var(--aurora-teal) / 0.5), 0 0 40px hsl(var(--aurora-teal) / 0.3);
+    text-shadow: 0 0 20px hsl(var(--forest-emerald) / 0.5), 0 0 40px hsl(var(--forest-emerald) / 0.3);
   }
   50% {
-    text-shadow: 0 0 30px hsl(var(--aurora-teal) / 0.7), 0 0 60px hsl(var(--aurora-teal) / 0.4);
+    text-shadow: 0 0 30px hsl(var(--forest-emerald) / 0.7), 0 0 60px hsl(var(--forest-emerald) / 0.4);
   }
 }
 
@@ -289,9 +289,9 @@
   background: linear-gradient(
     90deg,
     hsl(var(--foreground)) 0%,
-    hsl(var(--aurora-teal)) 25%,
-    hsl(var(--aurora-gold)) 50%,
-    hsl(var(--aurora-teal)) 75%,
+    hsl(var(--forest-emerald)) 25%,
+    hsl(var(--forest-gold)) 50%,
+    hsl(var(--forest-emerald)) 75%,
     hsl(var(--foreground)) 100%
   );
   background-size: 200% auto;

@@ -1,8 +1,8 @@
 import { ExternalLink, Globe } from "lucide-react";
 
 const ecosystemSites = [
+  { name: "Alaska Listings", url: "https://aklistings.com", description: "Statewide Marketplace" },
   { name: "Kenai Listings", url: "https://kenailistings.com", description: "Kenai Peninsula" },
-  { name: "Tongass Listings", url: "https://tongasslistings.com", description: "Southeast Alaska" },
   { name: "Chugach Listings", url: "https://chugachlistings.com", description: "Prince William Sound" },
   { name: "Alaska Mining Equipment", url: "https://alaskaminingequipment.com", description: "Mining & Prospecting" },
   { name: "Alaskan Boats", url: "https://alaskanboats.com", description: "Boats & Watercraft" },
