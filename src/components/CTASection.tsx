@@ -1,61 +1,138 @@
+import { Sparkles, Clock, CheckCircle, Gift, Shield, Star } from "lucide-react";
 import { Link } from "react-router-dom";
-import { Button } from "@/components/ui/button";
-import { ArrowRight, DollarSign, Clock, Image } from "lucide-react";
+import { motion } from "framer-motion";
 
 const CTASection = () => {
+  const benefits = [
+    { icon: Clock, text: "60 Days Active" },
+    { icon: Shield, text: "Email Verified" },
+    { icon: Star, text: "5 Photos Included" },
+  ];
+
   return (
-    <section className="py-20 md:py-28 relative overflow-hidden">
-      {/* Background effects */}
-      <div className="absolute inset-0 forest-bg" />
-      <div className="absolute top-0 left-1/4 w-96 h-96 bg-forest-emerald/10 rounded-full blur-3xl" />
-      <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-accent/10 rounded-full blur-3xl" />
+    <section className="relative py-20 md:py-28 overflow-hidden">
+      {/* Background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-forest-deep via-forest-pine to-forest-moss" />
       
-      <div className="relative container mx-auto px-4">
-        <div className="max-w-4xl mx-auto text-center">
-          {/* Heading */}
-          <h2 className="font-display text-2xl md:text-3xl lg:text-4xl font-bold text-foreground mb-6">
-            Ready to Sell? Post Your Private Listing Today
-          </h2>
-          
-          <p className="text-muted-foreground text-lg mb-12 max-w-2xl mx-auto">
-            Reach buyers across Southeast Alaska looking for exactly what you're selling. No commissions, no hidden fees—just a simple $10 flat rate.
-          </p>
+      {/* Animated background elements */}
+      <div className="absolute inset-0 overflow-hidden">
+        {[...Array(30)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute w-2 h-2 bg-forest-gold/20 rounded-full"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+            }}
+            animate={{
+              y: [-20, 20, -20],
+              opacity: [0.2, 0.6, 0.2],
+            }}
+            transition={{
+              duration: 4 + Math.random() * 4,
+              repeat: Infinity,
+              delay: Math.random() * 4,
+            }}
+          />
+        ))}
+      </div>
 
-          {/* Features */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-            <div className="bg-glass rounded-2xl p-6 text-center">
-              <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-primary/10 mb-4">
-                <DollarSign className="w-6 h-6 text-primary" />
-              </div>
-              <h3 className="font-display text-xl font-semibold text-foreground mb-2">$10 Flat Rate</h3>
-              <p className="text-muted-foreground text-sm">One simple price for any listing type</p>
-            </div>
-            
-            <div className="bg-glass rounded-2xl p-6 text-center">
-              <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-accent/10 mb-4">
-                <Clock className="w-6 h-6 text-accent" />
-              </div>
-              <h3 className="font-display text-xl font-semibold text-foreground mb-2">60 Day Duration</h3>
-              <p className="text-muted-foreground text-sm">Your listing stays active for two full months</p>
-            </div>
-            
-            <div className="bg-glass rounded-2xl p-6 text-center">
-              <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-forest-fern/10 mb-4">
-                <Image className="w-6 h-6 text-forest-fern" />
-              </div>
-              <h3 className="font-display text-xl font-semibold text-foreground mb-2">Up to 5 Images</h3>
-              <p className="text-muted-foreground text-sm">Showcase your item with multiple photos</p>
-            </div>
-          </div>
+      {/* Glowing orbs */}
+      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-forest-emerald/20 rounded-full blur-3xl" />
+      <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-forest-gold/10 rounded-full blur-3xl" />
 
-          {/* CTA Button */}
-          <Link to="/post-listing">
-            <Button variant="gold" size="xl" className="group">
-              Post Your Listing Now
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </Button>
+      <div className="relative container mx-auto px-4 text-center">
+        {/* Beta badge */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-forest-gold/20 border border-forest-gold/40 mb-6"
+        >
+          <motion.div
+            animate={{ rotate: [0, 15, -15, 0] }}
+            transition={{ duration: 2, repeat: Infinity }}
+          >
+            <Gift className="w-5 h-5 text-forest-gold" />
+          </motion.div>
+          <span className="text-sm font-bold text-forest-gold uppercase tracking-wider">
+            🎉 Beta Special Offer
+          </span>
+        </motion.div>
+
+        {/* Main heading */}
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.1 }}
+          className="font-display text-3xl md:text-5xl font-bold text-forest-light mb-4"
+        >
+          List for{" "}
+          <span className="relative">
+            <span className="line-through text-forest-light/40">$10</span>
+          </span>{" "}
+          <span className="text-forest-gold">FREE!</span>
+        </motion.h2>
+
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.2 }}
+          className="text-lg md:text-xl text-forest-light/80 max-w-2xl mx-auto mb-8"
+        >
+          During our beta launch, all email-verified users can post{" "}
+          <strong className="text-forest-gold">60-day listings completely free</strong>. 
+          Your listings will remain active for their full duration—even after beta ends!
+        </motion.p>
+
+        {/* Benefits */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.3 }}
+          className="flex flex-wrap justify-center gap-4 md:gap-8 mb-10"
+        >
+          {benefits.map((benefit, index) => (
+            <div
+              key={benefit.text}
+              className="flex items-center gap-2 px-4 py-2 rounded-full bg-forest-light/10 border border-forest-light/20"
+            >
+              <benefit.icon className="w-4 h-4 text-forest-gold" />
+              <span className="text-sm text-forest-light">{benefit.text}</span>
+            </div>
+          ))}
+        </motion.div>
+
+        {/* CTA Button */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.4 }}
+        >
+          <Link
+            to="/post-listing"
+            className="inline-flex items-center gap-3 px-10 py-5 rounded-2xl bg-forest-gold text-forest-deep font-bold text-lg md:text-xl hover:bg-forest-gold/90 transition-all shadow-2xl shadow-forest-gold/30 hover:shadow-forest-gold/50 hover:-translate-y-1"
+          >
+            <Sparkles className="w-6 h-6" />
+            Post Your Free Listing Now
+            <CheckCircle className="w-6 h-6" />
           </Link>
-        </div>
+        </motion.div>
+
+        {/* Urgency note */}
+        <motion.p
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.5 }}
+          className="mt-6 text-sm text-forest-light/60"
+        >
+          ⏰ Limited time beta offer • No credit card required • Instant activation
+        </motion.p>
       </div>
     </section>
   );

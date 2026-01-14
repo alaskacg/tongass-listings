@@ -6,14 +6,20 @@ import EcosystemSites from "@/components/EcosystemSites";
 import CTASection from "@/components/CTASection";
 import TrustIndicators from "@/components/TrustIndicators";
 import TongassNewsAd from "@/components/TongassNewsAd";
+import BetaBanner from "@/components/BetaBanner";
+import RegionsSection from "@/components/RegionsSection";
+import CategoriesSection from "@/components/CategoriesSection";
 
 const Index = () => {
   return (
     <div className="min-h-screen bg-background">
+      <BetaBanner />
       <Header />
       <main>
         <HeroSection />
         <TrustIndicators />
+        <RegionsSection />
+        <CategoriesSection />
         <section className="py-12 px-4">
           <div className="container mx-auto max-w-5xl">
             <TongassNewsAd />

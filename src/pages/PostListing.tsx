@@ -250,26 +250,31 @@ const PostListing = () => {
         <div className="container mx-auto px-4 max-w-3xl">
           {/* Page Header */}
           <div className="text-center mb-10">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-forest-gold/20 border border-forest-gold/50 mb-4">
+              <span className="text-sm font-bold text-forest-gold">🎉 BETA SPECIAL</span>
+            </div>
             <h1 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-4">
-              Post Your Listing
+              Post Your FREE Listing
             </h1>
             <p className="text-muted-foreground text-sm">
-              Fill out the form below to create your listing. All listings are $10 and active for 60 days.
+              During beta, email-verified users can post 60-day listings completely free!
             </p>
           </div>
 
-          {/* Pricing Banner */}
-          <div className="bg-glass rounded-2xl p-6 mb-10 flex items-center justify-between">
+          {/* Beta Free Banner */}
+          <div className="bg-gradient-to-r from-forest-deep to-forest-pine rounded-2xl p-6 mb-10 flex items-center justify-between border border-forest-gold/30">
             <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-xl bg-accent/20 flex items-center justify-center">
-                <DollarSign className="w-6 h-6 text-accent" />
+              <div className="w-12 h-12 rounded-xl bg-forest-gold/20 flex items-center justify-center">
+                <DollarSign className="w-6 h-6 text-forest-gold" />
               </div>
               <div>
-                <h3 className="font-semibold text-foreground text-sm">$10 per listing</h3>
-                <p className="text-xs text-muted-foreground">60 days • Up to 5 images</p>
+                <h3 className="font-semibold text-forest-light text-sm">
+                  <span className="line-through text-forest-light/50">$10</span> FREE during beta!
+                </h3>
+                <p className="text-xs text-forest-light/70">60 days • Up to 5 images • Stays active after beta</p>
               </div>
             </div>
-            <div className="text-2xl font-display font-bold text-accent">$10</div>
+            <div className="text-2xl font-display font-bold text-forest-gold">FREE</div>
           </div>
 
           {/* Form */}
