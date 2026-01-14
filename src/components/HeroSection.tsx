@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Trees, Grid3X3, Search, Star } from "lucide-react";
+import { ArrowRight, Trees, Grid3X3, Search, Star, Sparkles, Gift } from "lucide-react";
+import { motion } from "framer-motion";
 import heroImage from "@/assets/hero-tongass.jpg";
 
 const HeroSection = () => {
@@ -27,6 +28,30 @@ const HeroSection = () => {
       {/* Content */}
       <div className="relative z-10 container mx-auto px-4 text-center">
         <div className="max-w-5xl mx-auto">
+          {/* Beta announcement badge */}
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="mb-6"
+          >
+            <Link 
+              to="/post-listing"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-forest-gold/20 border border-forest-gold/50 hover:bg-forest-gold/30 transition-colors"
+            >
+              <motion.div
+                animate={{ rotate: [0, 15, -15, 0] }}
+                transition={{ duration: 2, repeat: Infinity }}
+              >
+                <Gift className="w-4 h-4 text-forest-gold" />
+              </motion.div>
+              <span className="text-sm font-semibold text-forest-gold">
+                🎉 BETA: Free 60-Day Listings for Verified Users!
+              </span>
+              <ArrowRight className="w-4 h-4 text-forest-gold" />
+            </Link>
+          </motion.div>
+
           {/* Main heading */}
           <h1 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-3 text-foreground opacity-0 animate-slide-up" style={{ animationDelay: '200ms', animationFillMode: 'forwards' }}>
             Tongass Listings
@@ -59,10 +84,11 @@ const HeroSection = () => {
                 <span className="font-display text-xs md:text-sm text-foreground block">Browse All Listings</span>
               </div>
             </Link>
-            <Link to="/browse?featured=true" className="group">
-              <div className="bg-glass rounded-lg p-4 md:p-5 transition-all duration-300 hover:scale-105 hover:bg-accent/10 border border-border/50 hover:border-accent/50">
-                <Star className="w-6 h-6 md:w-8 md:h-8 mx-auto mb-2 text-accent fill-accent/30 group-hover:animate-float" />
-                <span className="font-display text-xs md:text-sm text-foreground block">Featured Listings</span>
+            <Link to="/post-listing" className="group">
+              <div className="bg-glass rounded-lg p-4 md:p-5 transition-all duration-300 hover:scale-105 hover:bg-forest-gold/20 border border-forest-gold/50 hover:border-forest-gold relative overflow-hidden">
+                <div className="absolute top-1 right-1 px-1.5 py-0.5 bg-forest-gold text-forest-deep text-[10px] font-bold rounded">FREE</div>
+                <Sparkles className="w-6 h-6 md:w-8 md:h-8 mx-auto mb-2 text-forest-gold group-hover:animate-float" />
+                <span className="font-display text-xs md:text-sm text-foreground block">Post Free Listing</span>
               </div>
             </Link>
           </div>
@@ -76,25 +102,29 @@ const HeroSection = () => {
               </Button>
             </Link>
             <Link to="/post-listing">
-              <Button variant="glass" size="lg">
-                Post Your Listing — $10
+              <Button variant="gold" size="lg" className="group relative">
+                <span className="absolute -top-2 -right-2 px-2 py-0.5 bg-forest-gold text-forest-deep text-xs font-bold rounded-full animate-pulse">
+                  FREE
+                </span>
+                Post Your Listing
+                <Sparkles className="w-4 h-4" />
               </Button>
             </Link>
           </div>
 
-          {/* Stats */}
+          {/* Stats - Updated for beta */}
           <div className="grid grid-cols-3 gap-8 max-w-lg mx-auto mt-10 opacity-0 animate-fade-in" style={{ animationDelay: '1000ms', animationFillMode: 'forwards' }}>
             <div>
-              <div className="font-display text-xl md:text-2xl font-bold text-foreground">8</div>
-              <div className="text-muted-foreground text-xs">Communities</div>
-            </div>
-            <div>
-              <div className="font-display text-xl md:text-2xl font-bold text-foreground">$10</div>
-              <div className="text-muted-foreground text-xs">Flat Rate</div>
+              <div className="font-display text-xl md:text-2xl font-bold text-forest-gold">FREE</div>
+              <div className="text-muted-foreground text-xs">During Beta</div>
             </div>
             <div>
               <div className="font-display text-xl md:text-2xl font-bold text-foreground">60</div>
               <div className="text-muted-foreground text-xs">Day Listings</div>
+            </div>
+            <div>
+              <div className="font-display text-xl md:text-2xl font-bold text-foreground">5</div>
+              <div className="text-muted-foreground text-xs">Photos Each</div>
             </div>
           </div>
         </div>
