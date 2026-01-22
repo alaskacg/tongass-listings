@@ -18,6 +18,7 @@ import { useToast } from "@/hooks/use-toast";
 import { useAuth } from "@/contexts/AuthContext";
 import { supabase } from "@/integrations/supabase/client";
 import { Upload, X, DollarSign, AlertCircle, Loader2 } from "lucide-react";
+import { listingSchema, type ListingFormData } from "@/lib/validations";
 
 const categories = [
   { value: "vehicles", label: "Vehicles & Autos" },
@@ -52,6 +53,7 @@ const PostListing = () => {
   const [imagePreview, setImagePreview] = useState<string[]>([]);
   const [agreedToTerms, setAgreedToTerms] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errors, setErrors] = useState<Partial<Record<keyof ListingFormData, string>>>({});
   
   // Form state
   const [category, setCategory] = useState('');
@@ -147,6 +149,7 @@ const PostListing = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setErrors({});
     
     if (!user) {
       toast({
@@ -158,19 +161,39 @@ const PostListing = () => {
       return;
     }
 
-    if (!agreedToTerms) {
+    // Validate with zod
+    const result = listingSchema.safeParse({
+      category,
+      region,
+      title,
+      price,
+      description,
+      contactName,
+      contactEmail,
+      contactPhone,
+    });
+
+    if (!result.success) {
+      const fieldErrors: Partial<Record<keyof ListingFormData, string>> = {};
+      result.error.errors.forEach((error) => {
+        const field = error.path[0] as keyof ListingFormData;
+        if (!fieldErrors[field]) {
+          fieldErrors[field] = error.message;
+        }
+      });
+      setErrors(fieldErrors);
       toast({
-        title: "Terms Required",
-        description: "Please agree to the Terms of Service and Disclaimer to continue.",
+        title: "Validation Error",
+        description: "Please fix the errors in the form.",
         variant: "destructive",
       });
       return;
     }
 
-    if (!category || !region || !title || !price || !description || !contactName || !contactEmail) {
+    if (!agreedToTerms) {
       toast({
-        title: "Missing Fields",
-        description: "Please fill in all required fields.",
+        title: "Terms Required",
+        description: "Please agree to the Terms of Service and Disclaimer to continue.",
         variant: "destructive",
       });
       return;
@@ -286,8 +309,8 @@ const PostListing = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <Label htmlFor="category" className="text-sm">Category *</Label>
-                  <Select value={category} onValueChange={setCategory} required>
-                    <SelectTrigger>
+                  <Select value={category} onValueChange={setCategory}>
+                    <SelectTrigger className={errors.category ? 'border-destructive' : ''}>
                       <SelectValue placeholder="Select a category" />
                     </SelectTrigger>
                     <SelectContent>
@@ -298,12 +321,15 @@ const PostListing = () => {
                       ))}
                     </SelectContent>
                   </Select>
+                  {errors.category && (
+                    <p className="text-sm text-destructive">{errors.category}</p>
+                  )}
                 </div>
 
                 <div className="space-y-2">
                   <Label htmlFor="region" className="text-sm">Region *</Label>
-                  <Select value={region} onValueChange={setRegion} required>
-                    <SelectTrigger>
+                  <Select value={region} onValueChange={setRegion}>
+                    <SelectTrigger className={errors.region ? 'border-destructive' : ''}>
                       <SelectValue placeholder="Select a region" />
                     </SelectTrigger>
                     <SelectContent>
@@ -314,6 +340,9 @@ const PostListing = () => {
                       ))}
                     </SelectContent>
                   </Select>
+                  {errors.region && (
+                    <p className="text-sm text-destructive">{errors.region}</p>
+                  )}
                 </div>
               </div>
 
@@ -324,9 +353,12 @@ const PostListing = () => {
                   placeholder="e.g., 2018 Ford F-150 XLT 4x4"
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
-                  required
+                  className={errors.title ? 'border-destructive' : ''}
                   maxLength={100}
                 />
+                {errors.title && (
+                  <p className="text-sm text-destructive">{errors.title}</p>
+                )}
               </div>
 
               <div className="space-y-2">
@@ -337,9 +369,12 @@ const PostListing = () => {
                   placeholder="Enter price"
                   value={price}
                   onChange={(e) => setPrice(e.target.value)}
-                  required
+                  className={errors.price ? 'border-destructive' : ''}
                   min={0}
                 />
+                {errors.price && (
+                  <p className="text-sm text-destructive">{errors.price}</p>
+                )}
               </div>
 
               <div className="space-y-2">
@@ -349,10 +384,13 @@ const PostListing = () => {
                   placeholder="Describe your item in detail. Include condition, features, and any relevant history."
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
-                  required
+                  className={errors.description ? 'border-destructive' : ''}
                   rows={6}
                   maxLength={2000}
                 />
+                {errors.description && (
+                  <p className="text-sm text-destructive">{errors.description}</p>
+                )}
               </div>
             </div>
 
@@ -368,8 +406,11 @@ const PostListing = () => {
                     placeholder="Full name" 
                     value={contactName}
                     onChange={(e) => setContactName(e.target.value)}
-                    required 
+                    className={errors.contactName ? 'border-destructive' : ''}
                   />
+                  {errors.contactName && (
+                    <p className="text-sm text-destructive">{errors.contactName}</p>
+                  )}
                 </div>
 
                 <div className="space-y-2">
@@ -380,8 +421,11 @@ const PostListing = () => {
                     placeholder="your@email.com" 
                     value={contactEmail}
                     onChange={(e) => setContactEmail(e.target.value)}
-                    required 
+                    className={errors.contactEmail ? 'border-destructive' : ''}
                   />
+                  {errors.contactEmail && (
+                    <p className="text-sm text-destructive">{errors.contactEmail}</p>
+                  )}
                 </div>
 
                 <div className="space-y-2">
@@ -392,7 +436,11 @@ const PostListing = () => {
                     placeholder="(907) 555-0123"
                     value={contactPhone}
                     onChange={(e) => setContactPhone(e.target.value)}
+                    className={errors.contactPhone ? 'border-destructive' : ''}
                   />
+                  {errors.contactPhone && (
+                    <p className="text-sm text-destructive">{errors.contactPhone}</p>
+                  )}
                 </div>
               </div>
             </div>
