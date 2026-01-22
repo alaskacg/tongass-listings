@@ -9,6 +9,7 @@ import { useAuth } from '@/contexts/AuthContext';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { MapPin, Mail, Lock, User, Eye, EyeOff } from 'lucide-react';
+import { registerSchema } from '@/lib/validations';
 
 const Register = () => {
   const [fullName, setFullName] = useState('');
@@ -18,19 +19,37 @@ const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [agreedToTerms, setAgreedToTerms] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [errors, setErrors] = useState<{ 
+    fullName?: string; 
+    email?: string; 
+    password?: string; 
+    confirmPassword?: string; 
+  }>({});
   const { signUp } = useAuth();
   const { toast } = useToast();
   const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setErrors({});
     
-    if (password !== confirmPassword) {
-      toast({
-        title: "Passwords don't match",
-        description: "Please make sure your passwords match.",
-        variant: "destructive",
+    // Validate with zod
+    const result = registerSchema.safeParse({ 
+      fullName, 
+      email, 
+      password, 
+      confirmPassword 
+    });
+    
+    if (!result.success) {
+      const fieldErrors: typeof errors = {};
+      result.error.errors.forEach((error) => {
+        const field = error.path[0] as keyof typeof errors;
+        if (!fieldErrors[field]) {
+          fieldErrors[field] = error.message;
+        }
       });
+      setErrors(fieldErrors);
       return;
     }
 
@@ -45,7 +64,7 @@ const Register = () => {
 
     setLoading(true);
 
-    const { error } = await signUp(email, password, fullName);
+    const { error } = await signUp(result.data.email, result.data.password, result.data.fullName);
     
     if (error) {
       toast({
@@ -95,10 +114,13 @@ const Register = () => {
                       placeholder="John Doe"
                       value={fullName}
                       onChange={(e) => setFullName(e.target.value)}
-                      className="pl-10"
-                      required
+                      className={`pl-10 ${errors.fullName ? 'border-destructive' : ''}`}
+                      aria-invalid={!!errors.fullName}
                     />
                   </div>
+                  {errors.fullName && (
+                    <p className="text-sm text-destructive">{errors.fullName}</p>
+                  )}
                 </div>
 
                 <div className="space-y-2">
@@ -111,10 +133,13 @@ const Register = () => {
                       placeholder="you@example.com"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
-                      className="pl-10"
-                      required
+                      className={`pl-10 ${errors.email ? 'border-destructive' : ''}`}
+                      aria-invalid={!!errors.email}
                     />
                   </div>
+                  {errors.email && (
+                    <p className="text-sm text-destructive">{errors.email}</p>
+                  )}
                 </div>
 
                 <div className="space-y-2">
@@ -127,9 +152,8 @@ const Register = () => {
                       placeholder="••••••••"
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
-                      className="pl-10 pr-10"
-                      minLength={6}
-                      required
+                      className={`pl-10 pr-10 ${errors.password ? 'border-destructive' : ''}`}
+                      aria-invalid={!!errors.password}
                     />
                     <button
                       type="button"
@@ -139,6 +163,9 @@ const Register = () => {
                       {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
                     </button>
                   </div>
+                  {errors.password && (
+                    <p className="text-sm text-destructive">{errors.password}</p>
+                  )}
                 </div>
 
                 <div className="space-y-2">
@@ -151,11 +178,13 @@ const Register = () => {
                       placeholder="••••••••"
                       value={confirmPassword}
                       onChange={(e) => setConfirmPassword(e.target.value)}
-                      className="pl-10"
-                      minLength={6}
-                      required
+                      className={`pl-10 ${errors.confirmPassword ? 'border-destructive' : ''}`}
+                      aria-invalid={!!errors.confirmPassword}
                     />
                   </div>
+                  {errors.confirmPassword && (
+                    <p className="text-sm text-destructive">{errors.confirmPassword}</p>
+                  )}
                 </div>
 
                 <div className="flex items-start space-x-2">
