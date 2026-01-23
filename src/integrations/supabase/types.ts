@@ -10,18 +10,18 @@ export type Database = {
   // Allows to automatically instantiate createClient with right options
   // instead of createClient<Database, { PostgrestVersion: 'XX' }>(URL, KEY)
   __InternalSupabase: {
-    PostgrestVersion: "13.0.5"
+    PostgrestVersion: "14.1"
   }
   public: {
     Tables: {
       listings: {
         Row: {
           category: string
-          contact_email: string
-          contact_name: string
+          contact_email: string | null
+          contact_name: string | null
           contact_phone: string | null
           created_at: string
-          description: string
+          description: string | null
           expires_at: string | null
           id: string
           images: string[] | null
@@ -29,18 +29,17 @@ export type Database = {
           price: number
           region: string
           status: string
-          stripe_payment_id: string | null
           title: string
           updated_at: string
           user_id: string
         }
         Insert: {
           category: string
-          contact_email: string
-          contact_name: string
+          contact_email?: string | null
+          contact_name?: string | null
           contact_phone?: string | null
           created_at?: string
-          description: string
+          description?: string | null
           expires_at?: string | null
           id?: string
           images?: string[] | null
@@ -48,18 +47,17 @@ export type Database = {
           price: number
           region: string
           status?: string
-          stripe_payment_id?: string | null
           title: string
           updated_at?: string
           user_id: string
         }
         Update: {
           category?: string
-          contact_email?: string
-          contact_name?: string
+          contact_email?: string | null
+          contact_name?: string | null
           contact_phone?: string | null
           created_at?: string
-          description?: string
+          description?: string | null
           expires_at?: string | null
           id?: string
           images?: string[] | null
@@ -67,7 +65,6 @@ export type Database = {
           price?: number
           region?: string
           status?: string
-          stripe_payment_id?: string | null
           title?: string
           updated_at?: string
           user_id?: string
@@ -81,8 +78,9 @@ export type Database = {
           id: string
           listing_id: string | null
           status: string
-          stripe_customer_id: string | null
           stripe_payment_intent_id: string | null
+          stripe_session_id: string | null
+          updated_at: string
           user_id: string | null
         }
         Insert: {
@@ -91,8 +89,9 @@ export type Database = {
           id?: string
           listing_id?: string | null
           status?: string
-          stripe_customer_id?: string | null
           stripe_payment_intent_id?: string | null
+          stripe_session_id?: string | null
+          updated_at?: string
           user_id?: string | null
         }
         Update: {
@@ -101,8 +100,9 @@ export type Database = {
           id?: string
           listing_id?: string | null
           status?: string
-          stripe_customer_id?: string | null
           stripe_payment_intent_id?: string | null
+          stripe_session_id?: string | null
+          updated_at?: string
           user_id?: string | null
         }
         Relationships: [
@@ -117,6 +117,7 @@ export type Database = {
       }
       profiles: {
         Row: {
+          avatar_url: string | null
           created_at: string
           email: string
           full_name: string | null
@@ -126,6 +127,7 @@ export type Database = {
           user_id: string
         }
         Insert: {
+          avatar_url?: string | null
           created_at?: string
           email: string
           full_name?: string | null
@@ -135,6 +137,7 @@ export type Database = {
           user_id: string
         }
         Update: {
+          avatar_url?: string | null
           created_at?: string
           email?: string
           full_name?: string | null
@@ -147,7 +150,7 @@ export type Database = {
       }
       site_settings: {
         Row: {
-          description: string | null
+          created_at: string
           id: string
           setting_key: string
           setting_type: string
@@ -156,7 +159,7 @@ export type Database = {
           updated_by: string | null
         }
         Insert: {
-          description?: string | null
+          created_at?: string
           id?: string
           setting_key: string
           setting_type?: string
@@ -165,7 +168,7 @@ export type Database = {
           updated_by?: string | null
         }
         Update: {
-          description?: string | null
+          created_at?: string
           id?: string
           setting_key?: string
           setting_type?: string

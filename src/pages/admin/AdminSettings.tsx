@@ -22,7 +22,6 @@ interface Setting {
   setting_key: string;
   setting_value: string | null;
   setting_type: string;
-  description: string | null;
 }
 
 const AdminSettings = () => {
@@ -146,7 +145,7 @@ const AdminSettings = () => {
                 {stripeSettings.map((setting) => (
                   <div key={setting.setting_key} className="space-y-2">
                     <Label htmlFor={setting.setting_key} className="flex items-center justify-between">
-                      <span>{setting.description || setting.setting_key}</span>
+                      <span>{setting.setting_key.replace(/_/g, ' ')}</span>
                       {setting.setting_type === 'secret' && (
                         <button
                           type="button"
@@ -184,7 +183,7 @@ const AdminSettings = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {siteSettings.map((setting) => (
                   <div key={setting.setting_key} className="space-y-2">
-                    <Label htmlFor={setting.setting_key}>{setting.description || setting.setting_key}</Label>
+                    <Label htmlFor={setting.setting_key} className="capitalize">{setting.setting_key.replace(/_/g, ' ')}</Label>
                     <Input
                       id={setting.setting_key}
                       type="text"
@@ -212,7 +211,7 @@ const AdminSettings = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   {listingSettings.filter(s => s.setting_type !== 'boolean').map((setting) => (
                     <div key={setting.setting_key} className="space-y-2">
-                      <Label htmlFor={setting.setting_key}>{setting.description || setting.setting_key}</Label>
+                      <Label htmlFor={setting.setting_key} className="capitalize">{setting.setting_key.replace(/_/g, ' ')}</Label>
                       <Input
                         id={setting.setting_key}
                         type={setting.setting_type === 'number' ? 'number' : 'text'}
