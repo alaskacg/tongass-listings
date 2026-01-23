@@ -197,7 +197,7 @@ const RecentListings = () => {
             </p>
             <Link to="/post-listing">
               <Button variant="aurora" size="lg">
-                Post Your Listing — $10
+                Post Your Listing — FREE During Beta!
               </Button>
             </Link>
           </div>
