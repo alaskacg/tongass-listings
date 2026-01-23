@@ -79,7 +79,7 @@ const MyListings = () => {
       if (error) throw error;
       setListings(data || []);
     } catch (error) {
-      console.error('Error fetching listings:', error);
+      if (import.meta.env.DEV) console.error('Error fetching listings:', error);
       toast({
         title: "Error",
         description: "Failed to load your listings",
@@ -108,7 +108,7 @@ const MyListings = () => {
         description: "Your listing has been removed",
       });
     } catch (error) {
-      console.error('Error deleting listing:', error);
+      if (import.meta.env.DEV) console.error('Error deleting listing:', error);
       toast({
         title: "Error",
         description: "Failed to delete listing",

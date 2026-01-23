@@ -50,7 +50,7 @@ const AdminListings = () => {
       if (error) throw error;
       setListings(data || []);
     } catch (error) {
-      console.error('Error fetching listings:', error);
+      if (import.meta.env.DEV) console.error('Error fetching listings:', error);
       toast({
         title: "Error",
         description: "Failed to fetch listings",
@@ -88,7 +88,7 @@ const AdminListings = () => {
       });
       fetchListings();
     } catch (error) {
-      console.error('Error updating listing:', error);
+      if (import.meta.env.DEV) console.error('Error updating listing:', error);
       toast({
         title: "Error",
         description: "Failed to update listing",
@@ -114,7 +114,7 @@ const AdminListings = () => {
       });
       fetchListings();
     } catch (error) {
-      console.error('Error deleting listing:', error);
+      if (import.meta.env.DEV) console.error('Error deleting listing:', error);
       toast({
         title: "Error",
         description: "Failed to delete listing",

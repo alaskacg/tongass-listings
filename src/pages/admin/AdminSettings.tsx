@@ -44,7 +44,7 @@ const AdminSettings = () => {
       if (error) throw error;
       setSettings(data || []);
     } catch (error) {
-      console.error('Error fetching settings:', error);
+      if (import.meta.env.DEV) console.error('Error fetching settings:', error);
       toast({
         title: "Error",
         description: "Failed to fetch settings",
@@ -85,7 +85,7 @@ const AdminSettings = () => {
         description: "Settings saved successfully",
       });
     } catch (error) {
-      console.error('Error saving settings:', error);
+      if (import.meta.env.DEV) console.error('Error saving settings:', error);
       toast({
         title: "Error",
         description: "Failed to save settings",
