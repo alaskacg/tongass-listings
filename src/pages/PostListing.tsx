@@ -268,7 +268,7 @@ const PostListing = () => {
 
       navigate('/my-listings');
     } catch (error) {
-      console.error('Error creating listing:', error);
+      if (import.meta.env.DEV) console.error('Error creating listing:', error);
       toast({
         title: "Error",
         description: "Failed to create listing. Please try again.",

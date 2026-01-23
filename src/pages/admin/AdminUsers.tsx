@@ -44,7 +44,7 @@ const AdminUsers = () => {
       setUsers(profilesRes.data || []);
       setRoles(rolesRes.data || []);
     } catch (error) {
-      console.error('Error fetching users:', error);
+      if (import.meta.env.DEV) console.error('Error fetching users:', error);
       toast({
         title: "Error",
         description: "Failed to fetch users",
@@ -80,7 +80,7 @@ const AdminUsers = () => {
       }
       fetchData();
     } catch (error) {
-      console.error('Error toggling admin role:', error);
+      if (import.meta.env.DEV) console.error('Error toggling admin role:', error);
       toast({
         title: "Error",
         description: "Failed to update user role",

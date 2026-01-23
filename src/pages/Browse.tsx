@@ -74,7 +74,9 @@ const Browse = () => {
         query = query.lte('price', parseFloat(maxPrice));
       }
       if (search) {
-        query = query.or(`title.ilike.%${search}%,description.ilike.%${search}%`);
+        // Sanitize search input to escape ILIKE special characters
+        const sanitizedSearch = search.replace(/[%_\\]/g, '\\$&');
+        query = query.or(`title.ilike.%${sanitizedSearch}%,description.ilike.%${sanitizedSearch}%`);
       }
 
       // Apply sorting
@@ -100,7 +102,10 @@ const Browse = () => {
       if (error) throw error;
       setListings(data || []);
     } catch (error) {
-      console.error('Error fetching listings:', error);
+      // Log only in development to prevent information leakage
+      if (import.meta.env.DEV) {
+        console.error('Error fetching listings:', error);
+      }
     } finally {
       setLoading(false);
     }

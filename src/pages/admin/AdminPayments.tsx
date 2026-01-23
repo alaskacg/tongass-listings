@@ -42,7 +42,7 @@ const AdminPayments = () => {
       if (error) throw error;
       setPayments(data || []);
     } catch (error) {
-      console.error('Error fetching payments:', error);
+      if (import.meta.env.DEV) console.error('Error fetching payments:', error);
     } finally {
       setLoading(false);
     }
