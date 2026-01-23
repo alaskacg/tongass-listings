@@ -206,6 +206,14 @@ const PostListing = () => {
       const expiresAt = new Date();
       expiresAt.setDate(expiresAt.getDate() + 60);
 
+      // Beta mode: Check if user's email is verified for free listing
+      const isEmailVerified = user.email_confirmed_at !== null;
+      const isBetaMode = true; // Set to false when beta ends
+      
+      // During beta, email-verified users get free active listings
+      const listingStatus = isBetaMode && isEmailVerified ? 'active' : 'pending';
+      const paymentStatus = isBetaMode && isEmailVerified ? 'paid' : 'unpaid';
+
       // Create listing first
       const { data: listing, error: listingError } = await supabase
         .from('listings')
@@ -219,8 +227,8 @@ const PostListing = () => {
           contact_name: contactName.trim(),
           contact_email: contactEmail.trim(),
           contact_phone: contactPhone.trim() || null,
-          status: 'pending',
-          payment_status: 'unpaid',
+          status: listingStatus,
+          payment_status: paymentStatus,
           expires_at: expiresAt.toISOString(),
         })
         .select()
@@ -240,10 +248,23 @@ const PostListing = () => {
         }
       }
 
-      toast({
-        title: "Listing Created",
-        description: "Your listing has been submitted. Payment integration coming soon - your listing will be reviewed by admin.",
-      });
+      // Show appropriate success message based on beta status
+      if (isBetaMode && isEmailVerified) {
+        toast({
+          title: "🎉 Listing Published!",
+          description: "Your FREE beta listing is now live and visible to all Alaska buyers!",
+        });
+      } else if (isBetaMode && !isEmailVerified) {
+        toast({
+          title: "Verify Your Email",
+          description: "Please verify your email to activate your free beta listing.",
+        });
+      } else {
+        toast({
+          title: "Listing Created",
+          description: "Your listing has been submitted for review.",
+        });
+      }
 
       navigate('/my-listings');
     } catch (error) {

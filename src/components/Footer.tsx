@@ -17,9 +17,9 @@ const Footer = () => {
               Southeast Alaska's premier private listings marketplace connecting buyers and sellers across the Tongass region.
             </p>
             <div className="flex items-center gap-2">
-              <span className="text-xs text-muted-foreground">Listings just</span>
-              <span className="text-sm font-semibold text-accent">$10</span>
-              <span className="text-xs text-muted-foreground">for 60 days</span>
+              <span className="text-xs text-muted-foreground line-through">$10</span>
+              <span className="text-sm font-semibold text-accent">FREE</span>
+              <span className="text-xs text-muted-foreground">during beta!</span>
             </div>
           </div>
 

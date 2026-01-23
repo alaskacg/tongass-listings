@@ -223,8 +223,8 @@ const MyListings = () => {
                         </span>
                       )}
                       {listing.payment_status !== 'paid' && (
-                        <Badge variant="destructive" className="text-xs">
-                          Payment Required
+                        <Badge variant="secondary" className="text-xs">
+                          Verify Email for Free Activation
                         </Badge>
                       )}
                     </div>
