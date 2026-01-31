@@ -1,1 +1,4 @@
 project_id = "ekigdmcgdgrqshefsldp"
+
+[functions.sync-ecosystem]
+verify_jwt = false
