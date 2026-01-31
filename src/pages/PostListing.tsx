@@ -248,6 +248,21 @@ const PostListing = () => {
         }
       }
 
+      // Sync to ecosystem hub (non-blocking)
+      if (listing && listingStatus === 'active' && paymentStatus === 'paid') {
+        supabase.functions.invoke('sync-ecosystem', {
+          body: { listing_id: listing.id }
+        }).then(({ data, error }) => {
+          if (error) {
+            console.log('Ecosystem sync info:', error);
+          } else {
+            console.log('Ecosystem sync result:', data);
+          }
+        }).catch((err) => {
+          console.log('Ecosystem sync skipped:', err);
+        });
+      }
+
       // Show appropriate success message based on beta status
       if (isBetaMode && isEmailVerified) {
         toast({
