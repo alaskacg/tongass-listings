@@ -9,6 +9,7 @@ import TongassNewsAd from "@/components/TongassNewsAd";
 import BetaBanner from "@/components/BetaBanner";
 import RegionsSection from "@/components/RegionsSection";
 import CategoriesSection from "@/components/CategoriesSection";
+import EmpireNetwork from "@/components/EmpireNetwork";
 
 const Index = () => {
   return (
@@ -28,6 +29,7 @@ const Index = () => {
         <EcosystemSites />
         <RecentListings />
         <CTASection />
+        <EmpireNetwork currentSite="tongass-listings" />
       </main>
       <Footer />
     </div>
