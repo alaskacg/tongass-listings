@@ -157,10 +157,7 @@ const PostListing = () => {
         description: "Please sign in to post a listing.",
         variant: "destructive",
       });
-      // Redirect to Stripe for payment
-      const email = encodeURIComponent(contactEmail);
-      window.location.href = `https://buy.stripe.com/5kQcMYbUmdczcai0iK6J200?prefilled_email=${email}`;
-return;
+      navigate("/login");
       return;
     }
 
@@ -284,7 +281,10 @@ const PostListing = () => {
         });
       }
 
-      navigate('/my-listings');
+      // Redirect to Stripe for payment
+      const email = encodeURIComponent(contactEmail);
+      window.location.href = `https://buy.stripe.com/5kQcMYbUmdczcai0iK6J200?prefilled_email=${email}`;
+      return;
     } catch (error) {
       if (import.meta.env.DEV) console.error('Error creating listing:', error);
       toast({
