@@ -206,7 +206,7 @@ const PostListing = () => {
       const expiresAt = new Date();
       expiresAt.setDate(expiresAt.getDate() + 60);
 
-      const listingStatus = 'pending';
+      const listingStatus = 'pending_payment';
       const paymentStatus = 'unpaid';
 
       // Create listing first
@@ -244,13 +244,24 @@ const PostListing = () => {
       }
 
       toast({
-        title: "Listing Created",
-        description: "Your listing has been submitted for review.",
+        title: "Redirecting to payment...",
+        description: "Complete payment to activate your listing.",
       });
 
-      // Redirect to Stripe for payment
-      const email = encodeURIComponent(contactEmail);
-      window.location.href = `https://buy.stripe.com/5kQcMYbUmdczcai0iK6J200?prefilled_email=${email}`;
+      // Store listing ID for post-payment activation
+      localStorage.setItem('pending_listing_id', listing.id);
+
+      // Redirect to Stripe Checkout
+      const { loadStripe } = await import('@stripe/stripe-js');
+      const stripe = await loadStripe('pk_live_51Sa49S2OuXdsEk61uiFJYFAwecGziydOVZHFAdxQaEtVoUPD17bi9P58E8KD3pU1OHByS2YA4sVCBb5Nu8KFdo9H00YrgzjniG');
+      if (stripe) {
+        await stripe.redirectToCheckout({
+          lineItems: [{ price: 'price_1T2L7K2OuXdsEk61B2khAo0m', quantity: 1 }],
+          mode: 'payment',
+          successUrl: `${window.location.origin}/listing-success?listing_id=${listing.id}`,
+          cancelUrl: `${window.location.origin}/listing-cancel?listing_id=${listing.id}`,
+        });
+      }
       return;
     } catch (error) {
       if (import.meta.env.DEV) console.error('Error creating listing:', error);
@@ -544,7 +555,7 @@ const PostListing = () => {
                   Creating Listing...
                 </>
               ) : (
-                "Submit Listing"
+                "Pay & Publish — $10"
               )}
             </Button>
           </form>
