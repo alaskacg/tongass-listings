@@ -279,18 +279,15 @@ const PostListing = () => {
         <div className="container mx-auto px-4 max-w-3xl">
           {/* Page Header */}
           <div className="text-center mb-10">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-forest-gold/20 border border-forest-gold/50 mb-4">
-              <span className="text-sm font-bold text-forest-gold">🎉 BETA SPECIAL</span>
-            </div>
             <h1 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-4">
-              Post Your FREE Listing
+              Post Your Listing
             </h1>
             <p className="text-muted-foreground text-sm">
               Post your listing for just $10. Live for 60 days across our Alaska network.
             </p>
           </div>
 
-          {/* Beta Free Banner */}
+          {/* Listing Info Banner */}
           <div className="bg-gradient-to-r from-forest-deep to-forest-pine rounded-2xl p-6 mb-10 flex items-center justify-between border border-forest-gold/30">
             <div className="flex items-center gap-4">
               <div className="w-12 h-12 rounded-xl bg-forest-gold/20 flex items-center justify-center">
@@ -300,10 +297,10 @@ const PostListing = () => {
                 <h3 className="font-semibold text-forest-light text-sm">
                   $10 • 60 days
                 </h3>
-                <p className="text-xs text-forest-light/70">60 days • Up to 5 images • Stays active after beta</p>
+                <p className="text-xs text-forest-light/70">60 days • Up to 5 images</p>
               </div>
             </div>
-            <div className="text-2xl font-display font-bold text-forest-gold">FREE</div>
+            <div className="text-2xl font-display font-bold text-forest-gold">$10</div>
           </div>
 
           {/* Form */}

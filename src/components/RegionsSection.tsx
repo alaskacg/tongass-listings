@@ -129,7 +129,7 @@ const RegionsSection = () => {
           <div className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-forest-gold/10 border border-forest-gold/30">
             <Sparkles className="w-4 h-4 text-forest-gold" />
             <span className="text-sm text-foreground">
-              <strong className="text-forest-gold">Beta Special:</strong> Post FREE listings in any region!
+              Post listings in any region!
             </span>
             <Link
               to="/post-listing"

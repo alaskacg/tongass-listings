@@ -77,7 +77,7 @@ const CategoriesSection = () => {
   return (
     <section className="py-16 md:py-20 bg-card">
       <div className="container mx-auto px-4">
-        {/* Header with Beta badge */}
+        {/* Header */}
         <div className="text-center mb-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -184,20 +184,20 @@ const CategoriesSection = () => {
               <div className="text-center md:text-left">
                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-forest-gold/20 border border-forest-gold/40 mb-3">
                   <Sparkles className="w-3 h-3 text-forest-gold" />
-                  <span className="text-xs font-bold text-forest-gold uppercase">Limited Time</span>
+                  <span className="text-xs font-bold text-forest-gold uppercase">Post Now</span>
                 </div>
                 <h3 className="font-display text-xl md:text-2xl font-bold text-forest-light mb-2">
-                  Post Your Listing FREE During Beta!
+                  Post Your Listing Today!
                 </h3>
                 <p className="text-forest-light/80 text-sm max-w-md">
-                  Email verified users get 60-day listings at no cost. Your listing stays active even after we leave beta.
+                  Verified users get 60-day listings across our Alaska network with up to 5 photos included.
                 </p>
               </div>
               <Link
                 to="/post-listing"
                 className="flex-shrink-0 px-8 py-4 rounded-xl bg-forest-gold text-forest-deep font-bold text-lg hover:bg-forest-gold/90 transition-colors shadow-lg shadow-forest-gold/30"
               >
-                Post Free Listing →
+                Post a Listing →
               </Link>
             </div>
           </div>

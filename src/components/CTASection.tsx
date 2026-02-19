@@ -42,24 +42,6 @@ const CTASection = () => {
       <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-forest-gold/10 rounded-full blur-3xl" />
 
       <div className="relative container mx-auto px-4 text-center">
-        {/* Beta badge */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-forest-gold/20 border border-forest-gold/40 mb-6"
-        >
-          <motion.div
-            animate={{ rotate: [0, 15, -15, 0] }}
-            transition={{ duration: 2, repeat: Infinity }}
-          >
-            <Gift className="w-5 h-5 text-forest-gold" />
-          </motion.div>
-          <span className="text-sm font-bold text-forest-gold uppercase tracking-wider">
-            🎉 Beta Special Offer
-          </span>
-        </motion.div>
-
         {/* Main heading */}
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
@@ -68,11 +50,8 @@ const CTASection = () => {
           transition={{ delay: 0.1 }}
           className="font-display text-3xl md:text-5xl font-bold text-forest-light mb-4"
         >
-          List for{" "}
-          <span className="relative">
-            <span className="line-through text-forest-light/40">$10</span>
-          </span>{" "}
-          <span className="text-forest-gold">FREE!</span>
+          List for just{" "}
+          <span className="text-forest-gold">$10</span>
         </motion.h2>
 
         <motion.p
@@ -82,9 +61,9 @@ const CTASection = () => {
           transition={{ delay: 0.2 }}
           className="text-lg md:text-xl text-forest-light/80 max-w-2xl mx-auto mb-8"
         >
-          During our beta launch, all email-verified users can post{" "}
-          <strong className="text-forest-gold">60-day listings completely free</strong>. 
-          Your listings will remain active for their full duration—even after beta ends!
+          Verified users can post{" "}
+          <strong className="text-forest-gold">60-day listings</strong>{" "}
+          across our Alaska network with up to 5 photos included.
         </motion.p>
 
         {/* Benefits */}
@@ -118,7 +97,7 @@ const CTASection = () => {
             className="inline-flex items-center gap-3 px-10 py-5 rounded-2xl bg-forest-gold text-forest-deep font-bold text-lg md:text-xl hover:bg-forest-gold/90 transition-all shadow-2xl shadow-forest-gold/30 hover:shadow-forest-gold/50 hover:-translate-y-1"
           >
             <Sparkles className="w-6 h-6" />
-            Post Your Free Listing Now
+            Post Your Listing Now
             <CheckCircle className="w-6 h-6" />
           </Link>
         </motion.div>
@@ -131,7 +110,7 @@ const CTASection = () => {
           transition={{ delay: 0.5 }}
           className="mt-6 text-sm text-forest-light/60"
         >
-          ⏰ Limited time beta offer • No credit card required • Instant activation
+          ⏰ 60-day listings • Up to 5 photos • Instant activation
         </motion.p>
       </div>
     </section>

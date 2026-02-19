@@ -14,7 +14,6 @@ import EmpireNetwork from "@/components/EmpireNetwork";
 const Index = () => {
   return (
     <div className="min-h-screen bg-background">
-      <BetaBanner />
       <Header />
       <main>
         <HeroSection />
