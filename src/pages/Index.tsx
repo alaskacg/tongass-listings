@@ -6,7 +6,6 @@ import EcosystemSites from "@/components/EcosystemSites";
 import CTASection from "@/components/CTASection";
 import TrustIndicators from "@/components/TrustIndicators";
 import TongassNewsAd from "@/components/TongassNewsAd";
-import BetaBanner from "@/components/BetaBanner";
 import RegionsSection from "@/components/RegionsSection";
 import CategoriesSection from "@/components/CategoriesSection";
 import EmpireNetwork from "@/components/EmpireNetwork";
