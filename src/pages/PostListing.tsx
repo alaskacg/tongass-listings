@@ -157,7 +157,10 @@ const PostListing = () => {
         description: "Please sign in to post a listing.",
         variant: "destructive",
       });
-      navigate('/login');
+      // Redirect to Stripe for payment
+      const email = encodeURIComponent(contactEmail);
+      window.location.href = `https://buy.stripe.com/5kQcMYbUmdczcai0iK6J200?prefilled_email=${email}`;
+return;
       return;
     }
 
@@ -208,11 +211,11 @@ const PostListing = () => {
 
       // Beta mode: Check if user's email is verified for free listing
       const isEmailVerified = user.email_confirmed_at !== null;
-      const isBetaMode = true; // Set to false when beta ends
+      const false /* beta ended */ = true; // Set to false when beta ends
       
       // During beta, email-verified users get free active listings
-      const listingStatus = isBetaMode && isEmailVerified ? 'active' : 'pending';
-      const paymentStatus = isBetaMode && isEmailVerified ? 'paid' : 'unpaid';
+      const listingStatus = false /* beta ended */ && isEmailVerified ? 'active' : 'pending';
+      const paymentStatus = false /* beta ended */ && isEmailVerified ? 'paid' : 'unpaid';
 
       // Create listing first
       const { data: listing, error: listingError } = await supabase
@@ -228,7 +231,7 @@ const PostListing = () => {
           contact_email: contactEmail.trim(),
           contact_phone: contactPhone.trim() || null,
           status: listingStatus,
-          payment_status: paymentStatus,
+          payment_status: 'pending',
           expires_at: expiresAt.toISOString(),
         })
         .select()
@@ -264,15 +267,15 @@ const PostListing = () => {
       }
 
       // Show appropriate success message based on beta status
-      if (isBetaMode && isEmailVerified) {
+      if (false /* beta ended */ && isEmailVerified) {
         toast({
           title: "🎉 Listing Published!",
-          description: "Your FREE beta listing is now live and visible to all Alaska buyers!",
+          description: "Your listing is now live and visible to all Alaska buyers!",
         });
-      } else if (isBetaMode && !isEmailVerified) {
+      } else if (false /* beta ended */ && !isEmailVerified) {
         toast({
           title: "Verify Your Email",
-          description: "Please verify your email to activate your free beta listing.",
+          description: "Please verify your email to activate your listing.",
         });
       } else {
         toast({
@@ -316,7 +319,7 @@ const PostListing = () => {
               Post Your FREE Listing
             </h1>
             <p className="text-muted-foreground text-sm">
-              During beta, email-verified users can post 60-day listings completely free!
+              Post your listing for just $10. Live for 60 days across our Alaska network.
             </p>
           </div>
 
@@ -328,7 +331,7 @@ const PostListing = () => {
               </div>
               <div>
                 <h3 className="font-semibold text-forest-light text-sm">
-                  <span className="line-through text-forest-light/50">$10</span> FREE during beta!
+                  $10 • 60 days
                 </h3>
                 <p className="text-xs text-forest-light/70">60 days • Up to 5 images • Stays active after beta</p>
               </div>
