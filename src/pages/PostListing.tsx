@@ -206,13 +206,8 @@ const PostListing = () => {
       const expiresAt = new Date();
       expiresAt.setDate(expiresAt.getDate() + 60);
 
-      // Beta mode: Check if user's email is verified for free listing
-      const isEmailVerified = user.email_confirmed_at !== null;
-      const false /* beta ended */ = true; // Set to false when beta ends
-      
-      // During beta, email-verified users get free active listings
-      const listingStatus = false /* beta ended */ && isEmailVerified ? 'active' : 'pending';
-      const paymentStatus = false /* beta ended */ && isEmailVerified ? 'paid' : 'unpaid';
+      const listingStatus = 'pending';
+      const paymentStatus = 'unpaid';
 
       // Create listing first
       const { data: listing, error: listingError } = await supabase
@@ -248,38 +243,10 @@ const PostListing = () => {
         }
       }
 
-      // Sync to ecosystem hub (non-blocking)
-      if (listing && listingStatus === 'active' && paymentStatus === 'paid') {
-        supabase.functions.invoke('sync-ecosystem', {
-          body: { listing_id: listing.id }
-        }).then(({ data, error }) => {
-          if (error) {
-            console.log('Ecosystem sync info:', error);
-          } else {
-            console.log('Ecosystem sync result:', data);
-          }
-        }).catch((err) => {
-          console.log('Ecosystem sync skipped:', err);
-        });
-      }
-
-      // Show appropriate success message based on beta status
-      if (false /* beta ended */ && isEmailVerified) {
-        toast({
-          title: "🎉 Listing Published!",
-          description: "Your listing is now live and visible to all Alaska buyers!",
-        });
-      } else if (false /* beta ended */ && !isEmailVerified) {
-        toast({
-          title: "Verify Your Email",
-          description: "Please verify your email to activate your listing.",
-        });
-      } else {
-        toast({
-          title: "Listing Created",
-          description: "Your listing has been submitted for review.",
-        });
-      }
+      toast({
+        title: "Listing Created",
+        description: "Your listing has been submitted for review.",
+      });
 
       // Redirect to Stripe for payment
       const email = encodeURIComponent(contactEmail);
